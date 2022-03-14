@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+// IMPORT DEPENDENCIES
+import React from "react"
+import { Switch, Route, withRouter, Redirect } from 'react-router-dom';
 
-function App() {
+// IMPORT PAGES
+import Todolist from "./pages/todolist/todolist";
+import CreerList from "./pages/creerlist/creerlist";
+
+
+const App = () => {
+
+  let route = (
+  <Switch>
+    <Route path="/creer-list" component={CreerList} />
+    <Route path="/" exact component={Todolist} />
+    <Redirect to='/' />
+  </Switch>
+  )
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+     {route}
+    </>
+  )
 }
 
-export default App;
+export default  withRouter(App);

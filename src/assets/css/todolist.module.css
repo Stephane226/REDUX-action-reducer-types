@@ -1,0 +1,51 @@
+
+.Container{
+    margin: 50px;
+    border-width: 10px;
+    max-height:90vh;
+    padding:15px;
+    overflow-y:scroll
+  }
+  
+  .Container_todo_container{
+    text-align: right;
+    margin-bottom:40px
+  }
+  .Container_todo_container h2{
+text-align:center;
+width:100%
+  }
+  
+  .Container_bar_container{
+    border: solid 1px #888;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 10px;
+    padding: 20px;
+    margin:20px 0px
+  }
+  
+  .Container_text_container{
+    display: flex;
+  }
+  
+  .Container_button_container{
+    display: flex;
+  }
+  
+  .container_text{
+    margin-left: 25px;
+  }
+  
+  .container_button{
+    margin-right: 25px;
+  }
+  
+  .creer{
+    text-decoration:none;
+    padding:10px 20px;
+    background-color:green;
+    color:white;
+    border-radius:5px;
+    margin-left:10px
+  }
