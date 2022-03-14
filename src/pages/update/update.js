@@ -67,6 +67,7 @@ const Todolist = () => {
                 </div>
             </div>
         </div>
+        
         )
     })
 
@@ -81,4 +82,4 @@ const Todolist = () => {
     )
 }
 
-export default Todolist;
+export default Update;

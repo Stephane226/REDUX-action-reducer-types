@@ -15,7 +15,7 @@ function Voir(){
 
  const Viewİtemİd = useSelector(state => state.TodoReducer.Viewİtemİd);
  console.log(Viewİtemİd) 
-const todolist = useSelector(state => state.TodoReducer.todolist.filter(index => index.id == Viewİtemİd));
+const todolist = useSelector(state => state.TodoReducer.todolist.filter(index => index.id == Viewİtemİd ));
     let list = todolist.map((item,index)=>{
         return(
             

@@ -52,6 +52,14 @@ const ReducerTodo = (state = initialState, action) => {
                     ...state,
                     Viewİtemİd: action.itemİd
                 }
+
+                case actionTypes.EDİTİTEM:
+                    return{
+                        ...state,
+                        Viewİtemİd: action.itemİd
+                    }
+
+
         default:
             return state
     }
