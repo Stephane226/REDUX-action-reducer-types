@@ -25,6 +25,18 @@ width:100%
     margin:20px 0px
   }
   
+  .Container_bar_container_see{
+    border: solid 1px rgb(4, 161, 64);
+    background-color:rgb(180, 255, 180);
+    font-weight:600;
+    font-size:14px;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 10px;
+    padding: 20px;
+    margin:20px 0px
+  }
+  
   .Container_text_container{
     display: flex;
   }

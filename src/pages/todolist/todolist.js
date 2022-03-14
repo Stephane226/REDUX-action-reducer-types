@@ -2,7 +2,7 @@
 import React, {useEffect} from "react"
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, Redirect } from "react-router-dom";
-import { deleteListService, creerListStatusCancel } from "../../actions/todo/todo";
+import { deleteListService, creerListStatusCancel,viewİtem } from "../../actions/todo/todo";
 
 
 //INPORT CSS
@@ -26,6 +26,11 @@ const Todolist = () => {
       
         dispatch(deleteListService(dataId))
         
+    }
+
+    const seeİtem = (item)=>{
+        const  itemİd = item.id
+      dispatch(viewİtem(itemİd))
     }
 
 
@@ -52,7 +57,7 @@ const Todolist = () => {
                     <p>Editer</p>
                 </div>
                 <div className={classes.container_button}>
-                    <p>Voir</p>
+                    <p> <Link to="/voir" onClick={()=>seeİtem(item)}> Voir</Link></p>
                 </div>
             </div>
         </div>
@@ -63,7 +68,7 @@ const Todolist = () => {
         <div className={classes.Container}>
             <div className={classes.Container_todo_container}>
                 <h2>Todo App</h2>
-                <Link to="/creer-list" className={classes.creer}>Creer</Link>
+                <Link to="/creer-list" className={classes.creer} >Creer</Link>
             </div>
            {list}
         </div>

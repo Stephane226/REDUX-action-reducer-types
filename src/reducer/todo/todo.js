@@ -6,6 +6,7 @@ const initialState = {
     error: false,
     creerliststatus: false,
     deleteliststatus : false,
+    Viewİtemİd: null,
 }
 console.log(initialState.todolist)
 const ReducerTodo = (state = initialState, action) => {
@@ -45,6 +46,12 @@ const ReducerTodo = (state = initialState, action) => {
                 ...state,
                 creerliststatus: false
             }
+
+            case actionTypes.SEEITEM:
+                return{
+                    ...state,
+                    Viewİtemİd: action.itemİd
+                }
         default:
             return state
     }
