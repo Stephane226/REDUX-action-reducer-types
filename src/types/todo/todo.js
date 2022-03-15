@@ -12,4 +12,5 @@ export const GET_LIST_FAILED="GET_LIST_FAILED";
 export const DELETE="DELETE";
 
 export const SEEITEM = "SEEITEM"; 
-export const EDİTİTEM = "EDİTİTEM"; 
+export const EDİTİTEM = "EDİTİTEM";  
+export const UPDATELİSTSERVİCE = "UPDATELİSTSERVİCE";  

@@ -1,85 +1,114 @@
 // IMPORT DEPENDENCIES
-import React, {useEffect} from "react"
+import React, { useState } from "react";
+import { updateListService } from "../../actions/todo/todo";
+import { Link, Redirect } from "react-router-dom"
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, Redirect } from "react-router-dom";
-import { deleteListService, creerListStatusCancel,viewİtem } from "../../actions/todo/todo";
-
 
 //INPORT CSS
-import classes from '../../assets/css/todolist.module.css';
+import classes from '../../assets/css/creerlist.module.css';
 
-const Todolist = () => {
+function Update(){
 
-    
- 
-    const dispatch = useDispatch()
-    const todolist = useSelector(state => state.TodoReducer.todolist);
-
-    useEffect(() => {
-        dispatch(creerListStatusCancel())
-       
-    }, []);
-
-
-    const handleDelete = (item) => {
-        const dataId = item.id
-      
-        dispatch(deleteListService(dataId))
-        
-    }
-
-    const seeİtem = (item)=>{
-        const  itemİd = item.id
-      dispatch(viewİtem(itemİd))
-    }
+    const dispatch = useDispatch();
+    const loading = useSelector(state => state.TodoReducer.loading);
+    const creerliststatus = useSelector(state => state.TodoReducer.creerliststatus);
 
     
-    const editİtem = (item)=>{
-        const  itemİd = item.id
-      dispatch(writeİtem(itemİd))
+//Recuperer le ID en question
+     const Viewİtemİd = useSelector(state => state.TodoReducer.Viewİtemİd);
+     const todolist = useSelector(state => state.TodoReducer.todolist.filter(index => index.id == Viewİtemİd ));
+     const objectValue = todolist[0]
+
+
+    const [nom, setNom] = useState('')
+    const [errorMessageNom, setErrorMessageNom] = useState(false)
+
+    const [prenom, setPrenom] = useState('')
+    const [errorMessagePrenom, setErrorMessagePrenom] = useState(false)
+
+    const [age, setAge] = useState('')
+    const [errorMessageAge, setErrorMessageAge] = useState('')
+
+
+    const handleNom = (e) => {
+        setErrorMessageNom(false)
+        setNom(e.target.value)
     }
 
+    const handlePrenom = (e) => {
+        setErrorMessagePrenom(false)
+        setPrenom(e.target.value)
+        console.log(prenom)
+    }
+  
+    const handleAge = (e) => {
+        setErrorMessageAge(false)
+        setAge(e.target.value)
+    }
 
-    let list = todolist.map((item,index)=>{
-        return(
+    const handleSubmit = () => {
+
+        if (nom !== '' && nom.trim() !== '' && prenom !== '' && prenom.trim() !== '' && age !== '' && age.trim() !== '') {
             
-            <div  key={index} className={classes.Container_bar_container}>
-            <div className={classes.Container_text_container}>
-                <div className={classes.container_text}>
-                    <p>{item.nom}</p>
-                </div>
-                <div className={classes.container_text}>
-                    <p>{item.prenom}</p>
-                </div>
-                <div className={classes.container_text}>
-                    <p>{item.age}</p>
-                </div>
-            </div>
-            <div className={classes.Container_button_container}>
-                <div className={classes.container_button} onClick={()=>handleDelete(item)}>
-                    <p  >Supprimer</p>
-                </div>
-                <div className={classes.container_button}>
-                <p> <Link to="/voir" onClick={()=> editİtem(item)}> Voir</Link></p>
-                </div>
-                <div className={classes.container_button}>
-                    <p> <Link to="/voir" onClick={()=>seeİtem(item)}> Voir</Link></p>
-                </div>
-            </div>
-        </div>
-        
-        )
-    })
+            let data = { "id": Viewİtemİd, "nom": nom, "prenom": prenom, "age": age }
+            dispatch(updateListService(data))
+        }
+        else {
+            if (nom === '') {
+                setErrorMessageNom(true)
+            }
+            if (prenom === '') {
+                setErrorMessagePrenom(true)
+            }
+            if (age === '') {
+                setErrorMessageAge(true)
+            }
+        }
+
+    }
+
+
+    let redirect = null;
+
+    if(creerliststatus) {
+        redirect = <Redirect to="/"/>
+    }
 
     return (
         <div className={classes.Container}>
+            {redirect}
             <div className={classes.Container_todo_container}>
                 <h2>Todo App</h2>
-                <Link to="/creer-list" className={classes.creer} >Creer</Link>
             </div>
-           {list}
+            <div className={classes.Container_bar_container}>
+                <div>
+                    <label className={classes.label_text}> Nom : </label>
+                    <input type="text" defaultValue={objectValue.nom} onChange={handleNom} className={errorMessageNom ? classes.input_error : classes.input}  />
+                    {errorMessageNom ? <i><span className={classes.text_error}>Entrez votre nom svp!</span></i> : null}
+                </div>
+
+                <div>
+                    <label className={classes.label_text}> Prenom : </label>
+                    <input type="text" defaultValue={objectValue.prenom} onChange={handlePrenom} className={errorMessagePrenom ? classes.input_error : classes.input}  />
+                    {errorMessagePrenom ? <i><span className={classes.text_error}>Entrez votre prenom svp!</span></i> : null}
+                </div>
+
+                <div>
+                    <label className={classes.label_text} > Age : </label>
+                    <input type="text" defaultValue={objectValue.age} onChange={handleAge} className={errorMessageAge ? classes.input_error : classes.input} />
+                    {errorMessageAge ? <i><span className={classes.text_error}>Entrez votre age svp!</span></i> : null}
+                </div>
+            </div>
+            {
+                loading ? <p>Chargement...</p> : <div className={classes.container_button}>
+                    <p className={classes.annuler}><Link to="/todo-list" >Go Back</Link></p>
+                    <p onClick={handleSubmit} className={classes.creer}>Update</p>
+                </div>
+            }
+
         </div>
     )
 }
+
 
 export default Update;

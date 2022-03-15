@@ -1,4 +1,4 @@
-import { CREER_LIST_START, CREER_LIST_SUCCESS, CREER_LIST_FAILED, CREER_LIST_STATUS_CANCEL, DELETE,SEEITEM } from "../../types/todo/todo"
+import { CREER_LIST_START, CREER_LIST_SUCCESS, CREER_LIST_FAILED, CREER_LIST_STATUS_CANCEL, DELETE,SEEITEM ,EDİTİTEM,UPDATELİSTSERVİCE} from "../../types/todo/todo"
 
 export const creerListStart = () => {
     return {
@@ -51,3 +51,18 @@ export const viewİtem = (itemİd)=>{
     itemİd : itemİd
    }
 }
+
+export const writeİtem = (itemİd)=>{
+    return{
+     type : EDİTİTEM,
+     itemİd : itemİd
+    }
+ }
+
+ 
+export const updateListService = (data)=>{
+    return{
+     type : UPDATELİSTSERVİCE,
+     data: data
+    }
+ }
