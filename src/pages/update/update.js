@@ -55,13 +55,13 @@ function Update(){
         }
         else {
             if (nom === '') {
-                setErrorMessageNom(true)
+                setErrorMessageNom(false)
             }
             if (prenom === '') {
-                setErrorMessagePrenom(true)
+                setErrorMessagePrenom(false)
             }
             if (age === '') {
-                setErrorMessageAge(true)
+                setErrorMessageAge(false)
             }
         }
 
@@ -102,7 +102,7 @@ function Update(){
             {
                 loading ? <p>Chargement...</p> : <div className={classes.container_button}>
                     <p className={classes.annuler}><Link to="/todo-list" >Go Back</Link></p>
-                    <p onClick={handleSubmit} className={classes.creer}>Update</p>
+                    <p onClick={handleSubmit} className={classes.creer}><Link to="/todo-list" >Update </Link></p>
                 </div>
             }
 

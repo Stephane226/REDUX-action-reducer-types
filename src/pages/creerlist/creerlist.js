@@ -93,7 +93,7 @@ const CreerList = () => {
             </div>
             {
                 loading ? <p>Chargement...</p> : <div className={classes.container_button}>
-                    <p className={classes.annuler}>Annuler</p>
+                    <p className={classes.annuler}><Link to="./">Annuler</Link></p>
                     <p onClick={handleSubmit} className={classes.creer}>Creer</p>
                 </div>
             }
